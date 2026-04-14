@@ -535,9 +535,6 @@ function exportDocument() {
     </tbody>
   </table>
 
-  <h2>個人別明細</h2>
-  ${beneficiaryDetails}
-
   <h2>収支サマリー</h2>
   <table>
     <thead><tr><th>名前</th><th class="num">立替合計</th><th class="num">負担分合計</th><th class="num">収支</th></tr></thead>
@@ -546,6 +543,10 @@ function exportDocument() {
 
   <h2>精算方法</h2>
   ${settlementRows}
+
+  <h2>個人別明細</h2>
+  ${beneficiaryDetails}
+
 
   <div style="margin-top:32px;text-align:right;">
     <button onclick="window.print()" style="padding:8px 20px;background:#667eea;color:#fff;border:none;border-radius:6px;font-size:0.9rem;cursor:pointer;">
