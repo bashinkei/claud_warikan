@@ -418,6 +418,7 @@ function exportDocument() {
 
   const now = new Date();
   const dateStr = `${now.getFullYear()}年${now.getMonth()+1}月${now.getDate()}日`;
+  const docTitle = document.getElementById('doc-title').value.trim() || '割り勘精算書';
 
   const paymentRows = getSortedPayments().map(({ p }, i) => `
     <tr>
@@ -492,7 +493,7 @@ function exportDocument() {
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>割り勘精算書 ${dateStr}</title>
+  <title>${escHtml(docTitle)} ${dateStr}</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Helvetica Neue', Arial, sans-serif; color: #1a202c; padding: 40px; max-width: 720px; margin: 0 auto; }
@@ -520,7 +521,7 @@ function exportDocument() {
   </style>
 </head>
 <body>
-  <h1>割り勘精算書</h1>
+  <h1>${escHtml(docTitle)}</h1>
   <div class="date">${dateStr} 作成</div>
 
   <h2>立替一覧</h2>
