@@ -195,11 +195,11 @@ function renderPayments() {
 
   el.innerHTML = indexed.map(({ p, i }) => `
     <div class="payment-item">
-      <div>
+      <div class="payment-item-left">
         <div class="payer">${escHtml(p.payer)}${p.memo ? ` <span style="font-weight:400;color:#718096;">「${escHtml(p.memo)}」</span>` : ''}</div>
         <div class="for-info">${escHtml(p.for.join('・'))} の分</div>
       </div>
-      <div style="display:flex;align-items:center;gap:6px;">
+      <div class="payment-item-right">
         <div class="amount">${p.amount.toLocaleString()}円</div>
         <button class="btn btn-secondary" style="padding:4px 10px;font-size:0.75rem;" onclick="editPayment(${i})">編集</button>
         <button class="btn btn-danger" style="padding:4px 10px;font-size:0.75rem;" onclick="removePayment(${i})">削除</button>
