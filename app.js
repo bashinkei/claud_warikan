@@ -446,8 +446,9 @@ function exportDocument() {
   }).join('');
 
   // 対象者別明細（自分が含まれる立替の一覧と自己負担分）
+  const sortedPayments = getSortedPayments().map(({ p }) => p);
   const beneficiaryDetails = members.map(m => {
-    const myPayments = payments.filter(p => p.for.includes(m));
+    const myPayments = sortedPayments.filter(p => p.for.includes(m));
     if (myPayments.length === 0) return '';
     const myTotal = myPayments.reduce((s, p) => s + p.amount / p.for.length, 0);
     const rows = myPayments.map(p => {
