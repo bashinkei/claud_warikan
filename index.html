@@ -72,14 +72,39 @@
 
     <!-- 立替一覧 -->
     <div class="card">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid #e2e8f0;">
-        <h2 style="margin:0;padding:0;border:none;">立替一覧</h2>
-        <select id="sort-select" onchange="renderPayments()" style="font-size:0.8rem;padding:4px 8px;border:1px solid #cbd5e0;border-radius:6px;">
-          <option value="default">追加順</option>
-          <option value="amount-desc">金額が高い順</option>
-          <option value="amount-asc">金額が低い順</option>
-          <option value="payer">支払った人順</option>
-        </select>
+      <div style="margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid #e2e8f0;">
+        <h2 style="margin:0 0 10px;padding:0;border:none;">立替一覧</h2>
+        <div class="sort-row">
+          <div class="sort-col">
+            <label class="sort-label">第1</label>
+            <select class="sort-select" id="sort1" onchange="renderPayments()">
+              <option value="default">追加順</option>
+              <option value="amount-desc">金額が高い順</option>
+              <option value="amount-asc">金額が低い順</option>
+              <option value="payer">支払った人順</option>
+            </select>
+          </div>
+          <div class="sort-col">
+            <label class="sort-label">第2</label>
+            <select class="sort-select" id="sort2" onchange="renderPayments()">
+              <option value="none">なし</option>
+              <option value="default">追加順</option>
+              <option value="amount-desc">金額が高い順</option>
+              <option value="amount-asc">金額が低い順</option>
+              <option value="payer">支払った人順</option>
+            </select>
+          </div>
+          <div class="sort-col">
+            <label class="sort-label">第3</label>
+            <select class="sort-select" id="sort3" onchange="renderPayments()">
+              <option value="none">なし</option>
+              <option value="default">追加順</option>
+              <option value="amount-desc">金額が高い順</option>
+              <option value="amount-asc">金額が低い順</option>
+              <option value="payer">支払った人順</option>
+            </select>
+          </div>
+        </div>
       </div>
       <div class="payment-list" id="payment-list">
         <span class="empty-state">まだ立替がありません</span>

@@ -176,12 +176,31 @@ function removePayment(idx) {
 }
 
 function getSortedPayments() {
-  const sort = document.getElementById('sort-select')?.value || 'default';
+  const keys = ['sort1', 'sort2', 'sort3']
+    .map(id => document.getElementById(id)?.value || 'none')
+    .filter(v => v !== 'none');
+
   const indexed = payments.map((p, i) => ({ p, i }));
-  if (sort === 'amount-desc') indexed.sort((a, b) => b.p.amount - a.p.amount);
-  else if (sort === 'amount-asc') indexed.sort((a, b) => a.p.amount - b.p.amount);
-  else if (sort === 'payer') indexed.sort((a, b) => a.p.payer.localeCompare(b.p.payer, 'ja'));
+
+  indexed.sort((a, b) => {
+    for (const key of keys) {
+      const result = compareByKey(a, b, key);
+      if (result !== 0) return result;
+    }
+    return 0;
+  });
+
   return indexed;
+}
+
+function compareByKey(a, b, key) {
+  switch (key) {
+    case 'amount-desc': return b.p.amount - a.p.amount;
+    case 'amount-asc':  return a.p.amount - b.p.amount;
+    case 'payer':       return a.p.payer.localeCompare(b.p.payer, 'ja');
+    case 'default':     return a.i - b.i;
+    default:            return 0;
+  }
 }
 
 function renderPayments() {

@@ -344,6 +344,33 @@ select:focus, input:focus { border-color: #667eea; }
   transform: translateX(-50%) translateY(0);
 }
 
+/* --- Sort row --- */
+.sort-row {
+  display: flex;
+  gap: 8px;
+}
+
+.sort-col {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex: 1;
+}
+
+.sort-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #718096;
+}
+
+.sort-select {
+  font-size: 0.8rem;
+  padding: 4px 6px;
+  border: 1px solid #cbd5e0;
+  border-radius: 6px;
+  width: 100%;
+}
+
 /* --- スマホ対応 --- */
 @media (max-width: 480px) {
   .form-row {
