@@ -445,6 +445,37 @@ function exportDocument() {
     </tr>`;
   }).join('');
 
+  // 対象者別明細（自分が含まれる立替の一覧と自己負担分）
+  const beneficiaryDetails = members.map(m => {
+    const myPayments = payments.filter(p => p.for.includes(m));
+    if (myPayments.length === 0) return '';
+    const myTotal = myPayments.reduce((s, p) => s + p.amount / p.for.length, 0);
+    const rows = myPayments.map(p => {
+      const share = p.amount / p.for.length;
+      return `<tr>
+        <td>${escHtml(p.payer)}</td>
+        <td>${escHtml(p.memo || '—')}</td>
+        <td class="num">${p.amount.toLocaleString()}円 ÷ ${p.for.length}人</td>
+        <td class="num">${Math.round(share).toLocaleString()}円</td>
+      </tr>`;
+    }).join('');
+    return `
+      <div class="member-block">
+        <div class="member-name">${escHtml(m)}</div>
+        <table>
+          <thead><tr><th>支払った人</th><th>メモ</th><th class="num">内訳</th><th class="num">自己負担</th></tr></thead>
+          <tbody>
+            ${rows}
+            <tr class="total-row">
+              <td colspan="3">合計負担額</td>
+              <td class="num">${Math.round(myTotal).toLocaleString()}円</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    `;
+  }).join('');
+
   const settlementRows = settlements.length === 0
     ? '<p class="all-even">全員ちょうど割り勘です！精算不要</p>'
     : settlements.map(s => `
@@ -479,6 +510,8 @@ function exportDocument() {
     .settle-row .arrow { color: #38a169; font-size: 1.1rem; }
     .settle-row .amount { font-weight: 700; color: #276749; margin-left: auto; }
     .all-even { padding: 14px; background: #f0fff4; border-radius: 8px; color: #276749; font-weight: 700; text-align: center; }
+    .member-block { margin-bottom: 20px; }
+    .member-name { font-weight: 700; font-size: 0.95rem; color: #2d3748; margin-bottom: 6px; padding-left: 6px; border-left: 3px solid #667eea; }
     @media print {
       body { padding: 20px; }
       button { display: none; }
@@ -500,6 +533,9 @@ function exportDocument() {
       </tr>
     </tbody>
   </table>
+
+  <h2>個人別明細</h2>
+  ${beneficiaryDetails}
 
   <h2>収支サマリー</h2>
   <table>
