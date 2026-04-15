@@ -180,7 +180,7 @@ function removePayment(idx) {
 }
 
 function getSortedPayments() {
-  const keys = ['sort1', 'sort2', 'sort3']
+  const keys = ['sort1', 'sort2']
     .map(id => document.getElementById(id)?.value || 'none')
     .filter(v => v !== 'none');
 
