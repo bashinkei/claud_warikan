@@ -10,20 +10,23 @@
   <div class="container">
     <h1>割り勘アプリ</h1>
 
-    <!-- 保存・読み込み -->
-    <div class="card">
-      <h2>データの保存・読み込み</h2>
-      <div class="save-load-row">
-        <button class="btn btn-secondary" style="flex:1" onclick="saveData()">保存（JSONダウンロード）</button>
-        <label class="btn btn-secondary" style="flex:1;text-align:center;cursor:pointer;margin:0">
-          読み込み（JSONファイル）
-          <input type="file" id="load-file" accept=".json" multiple style="display:none" onchange="loadData(event)">
-        </label>
-      </div>
-    </div>
-
     <!-- トースト通知 -->
     <div class="toast" id="toast"></div>
+
+    <!-- FAB: 保存・読み込み -->
+    <div class="fab-container" id="fab-container">
+      <div class="fab-menu" id="fab-menu">
+        <label class="fab-menu-item">
+          <span>読み込み(json)</span>
+          <input type="file" id="load-file" accept=".json" multiple style="display:none" onchange="loadData(event)">
+        </label>
+        <button class="fab-menu-item" onclick="saveData()">保存(json)</button>
+      </div>
+      <button class="fab-btn" id="fab-btn" onclick="toggleFab()" title="保存・読み込み">
+        <span class="fab-icon">💾</span>
+        <span class="fab-label">保存メニュー</span>
+      </button>
+    </div>
 
     <!-- メンバー登録 -->
     <div class="card">

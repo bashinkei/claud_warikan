@@ -569,6 +569,22 @@ function showToast(msg) {
   setTimeout(() => el.classList.remove('show'), 2500);
 }
 
+// --- FAB ---
+function toggleFab() {
+  const menu = document.getElementById('fab-menu');
+  const btn = document.getElementById('fab-btn');
+  const isOpen = menu.classList.toggle('show');
+  btn.classList.toggle('open', isOpen);
+}
+
+document.addEventListener('click', (e) => {
+  const container = document.getElementById('fab-container');
+  if (container && !container.contains(e.target)) {
+    document.getElementById('fab-menu').classList.remove('show');
+    document.getElementById('fab-btn').classList.remove('open');
+  }
+});
+
 // Enterキー対応
 document.getElementById('member-name').addEventListener('keydown', e => {
   if (e.key === 'Enter') addMember();

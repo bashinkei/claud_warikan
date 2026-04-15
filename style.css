@@ -371,6 +371,108 @@ select:focus, input:focus { border-color: #667eea; }
   width: 100%;
 }
 
+/* --- FAB --- */
+.fab-container {
+  position: fixed;
+  bottom: 28px;
+  right: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  z-index: 200;
+}
+
+.fab-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #38a169;
+  color: #fff;
+  font-size: 1.4rem;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(56,161,105,0.5);
+  transition: background 0.2s, transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+}
+
+.fab-label {
+  display: none;
+}
+
+.fab-btn:hover { background: #276749; transform: scale(1.08); }
+.fab-btn.open { transform: scale(1.08); }
+.fab-icon { display: inline-block; transition: transform 0.2s; }
+.fab-btn.open .fab-icon { transform: rotate(20deg); }
+
+.fab-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-end;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.fab-menu.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.fab-menu-item {
+  background: #fff;
+  color: #2d3748;
+  border: 1px solid #cbd5e0;
+  border-radius: 20px;
+  padding: 8px 18px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  white-space: nowrap;
+  display: block;
+  text-align: center;
+  transition: background 0.15s;
+}
+
+.fab-menu-item:hover { background: #f0f4f8; }
+
+/* --- PC: FAB大きめ + ラベル表示 --- */
+@media (min-width: 640px) {
+  .fab-btn {
+    width: auto;
+    height: 56px;
+    border-radius: 28px;
+    padding: 0 22px;
+    font-size: 1.5rem;
+    gap: 8px;
+  }
+
+  .fab-label {
+    display: inline;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+
+  .fab-menu-item {
+    font-size: 1rem;
+    padding: 10px 22px;
+  }
+
+  .fab-container {
+    bottom: 36px;
+    right: 36px;
+  }
+}
+
 /* --- スマホ対応 --- */
 @media (max-width: 480px) {
   .form-row {
