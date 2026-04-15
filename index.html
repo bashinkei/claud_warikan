@@ -117,15 +117,18 @@
     <!-- 精算計算 -->
     <div class="card">
       <h2>精算結果</h2>
-      <div style="display:flex;gap:10px;">
-        <button class="btn btn-primary btn-block" onclick="calculate()">精算を計算する</button>
-        <button class="btn btn-secondary btn-block" onclick="exportDocument()">ドキュメントとして保存</button>
-      </div>
-      <div class="memo-row" style="margin-top:12px;margin-bottom:0;">
+      <button class="btn btn-primary btn-block" onclick="calculate()">精算を計算する</button>
+      <div id="result-area" style="margin-top:20px;"></div>
+    </div>
+
+    <!-- ドキュメント出力 -->
+    <div class="card">
+      <h2>ドキュメントとして保存</h2>
+      <div class="memo-row">
         <label>ドキュメントタイトル</label>
         <input type="text" id="doc-title" placeholder="割り勘精算書">
       </div>
-      <div id="result-area" style="margin-top:20px;"></div>
+      <button class="btn btn-secondary btn-block" onclick="exportDocument()">ドキュメントとして保存</button>
     </div>
   </div>
 
