@@ -25,6 +25,7 @@ function addMember() {
   renderMembers();
   updatePayerSelect();
   renderBeneficiaries();
+  saveToStorage();
 }
 
 function removeMember(name) {
@@ -47,6 +48,7 @@ function removeMember(name) {
   renderMembers();
   updatePayerSelect();
   renderBeneficiaries();
+  saveToStorage();
 }
 
 function renderMembers() {
@@ -129,6 +131,7 @@ function addPayment() {
 
   renderPayments();
   document.getElementById('result-area').innerHTML = '';
+  saveToStorage();
 }
 
 function editPayment(idx) {
@@ -173,6 +176,7 @@ function removePayment(idx) {
   payments.splice(idx, 1);
   renderPayments();
   document.getElementById('result-area').innerHTML = '';
+  saveToStorage();
 }
 
 function getSortedPayments() {
@@ -384,6 +388,7 @@ function loadData(event) {
         renderBeneficiaries();
         renderPayments();
         document.getElementById('result-area').innerHTML = '';
+        saveToStorage();
 
         if (errorFiles.length === 0) {
           showToast(`${files.length}件のファイルを読み込みました`);
@@ -584,6 +589,39 @@ document.addEventListener('click', (e) => {
     document.getElementById('fab-btn').classList.remove('open');
   }
 });
+
+// --- localStorage 自動保存・復元 ---
+function saveToStorage() {
+  localStorage.setItem('warikan', JSON.stringify({ members, payments }));
+}
+
+function resetData() {
+  if (!window.confirm('すべてのデータをリセットしますか？この操作は元に戻せません。')) return;
+  members = [];
+  payments = [];
+  editingIndex = -1;
+  localStorage.removeItem('warikan');
+  renderMembers();
+  updatePayerSelect();
+  renderBeneficiaries();
+  renderPayments();
+  document.getElementById('result-area').innerHTML = '';
+  showToast('データをリセットしました');
+}
+
+(function loadFromStorage() {
+  const raw = localStorage.getItem('warikan');
+  if (!raw) return;
+  try {
+    const data = JSON.parse(raw);
+    if (Array.isArray(data.members)) members = data.members;
+    if (Array.isArray(data.payments)) payments = data.payments;
+    renderMembers();
+    updatePayerSelect();
+    renderBeneficiaries();
+    renderPayments();
+  } catch (e) { /* 無視 */ }
+})();
 
 // Enterキー対応
 document.getElementById('member-name').addEventListener('keydown', e => {

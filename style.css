@@ -443,6 +443,8 @@ select:focus, input:focus { border-color: #667eea; }
 }
 
 .fab-menu-item:hover { background: #f0f4f8; }
+.fab-menu-item--danger { color: #e53e3e; border-color: #feb2b2; }
+.fab-menu-item--danger:hover { background: #fff0f0; }
 
 /* --- PC: FAB大きめ + ラベル表示 --- */
 @media (min-width: 640px) {
