@@ -462,6 +462,7 @@ function exportDocument() {
       return `<tr>
         <td>${escHtml(p.payer)}</td>
         <td>${escHtml(p.memo || '—')}</td>
+        <td style="font-size:0.75rem;">${escHtml(p.for.join('・'))}</td>
         <td class="num">${p.amount.toLocaleString()}円 ÷ ${p.for.length}人</td>
         <td class="num">${Math.round(share).toLocaleString()}円</td>
       </tr>`;
@@ -470,11 +471,11 @@ function exportDocument() {
       <div class="member-block">
         <div class="member-name">${escHtml(m)}</div>
         <table>
-          <thead><tr><th>支払った人</th><th>メモ</th><th class="num">内訳</th><th class="num">自己負担</th></tr></thead>
+          <thead><tr><th>支払った人</th><th>メモ</th><th>対象者</th><th class="num">内訳</th><th class="num">自己負担</th></tr></thead>
           <tbody>
             ${rows}
             <tr class="total-row">
-              <td colspan="3">合計負担額</td>
+              <td colspan="4">合計負担額</td>
               <td class="num">${Math.round(myTotal).toLocaleString()}円</td>
             </tr>
           </tbody>
@@ -501,7 +502,7 @@ function exportDocument() {
   <title>${escHtml(docTitle)} ${dateStr}</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Helvetica Neue', Arial, sans-serif; color: #1a202c; padding: 40px; max-width: 720px; margin: 0 auto; }
+    body { font-family: 'Helvetica Neue', Arial, sans-serif; color: #1a202c; padding: 40px; max-width: 8400px; margin: 0 auto; }
     h1 { font-size: 1.4rem; margin-bottom: 4px; }
     .date { color: #718096; font-size: 0.875rem; margin-bottom: 32px; }
     h2 { font-size: 1rem; font-weight: 700; color: #4a5568; margin: 28px 0 12px; padding-bottom: 6px; border-bottom: 2px solid #e2e8f0; }

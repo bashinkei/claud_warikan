@@ -18,10 +18,10 @@
       <div class="fab-menu" id="fab-menu">
         <button class="fab-menu-item fab-menu-item--danger" onclick="resetData()">リセット</button>
         <label class="fab-menu-item">
-          <span>読み込み(json)</span>
+          <span>ファイルから読み込み</span>
           <input type="file" id="load-file" accept=".json" multiple style="display:none" onchange="loadData(event)">
         </label>
-        <button class="fab-menu-item" onclick="saveData()">保存(json)</button>
+        <button class="fab-menu-item" onclick="saveData()">ファイルへ保存</button>
       </div>
       <button class="fab-btn" id="fab-btn" onclick="toggleFab()" title="保存・読み込み">
         <span class="fab-icon">💾</span>
